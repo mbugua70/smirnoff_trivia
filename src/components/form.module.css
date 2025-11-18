@@ -1248,6 +1248,607 @@
   }
 }
 
+/* ============================================ */
+/* WELCOME SCREEN STYLES - Smirnoff Premium Theme */
+/* ============================================ */
+
+.welcome_screen {
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(135deg,
+    #000000 0%,
+    #1a0a0a 25%,
+    #2d1215 50%,
+    #1a0a0a 75%,
+    #000000 100%);
+  background-size: 400% 400%;
+  animation: gradientShift 15s ease infinite;
+}
+
+@keyframes gradientShift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.welcome_content {
+  position: relative;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  padding: 2rem;
+}
+
+/* Floating Particles */
+.particles {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.particle {
+  position: absolute;
+  border-radius: 50%;
+  background: radial-gradient(circle, #e22e36 0%, transparent 70%);
+  opacity: 0.12;
+  animation: float 20s infinite ease-in-out;
+}
+
+.particle1 {
+  width: 300px;
+  height: 300px;
+  top: 10%;
+  left: 10%;
+  animation-duration: 25s;
+  animation-delay: 0s;
+}
+
+.particle2 {
+  width: 200px;
+  height: 200px;
+  top: 60%;
+  right: 15%;
+  animation-duration: 20s;
+  animation-delay: 2s;
+  background: radial-gradient(circle, #ff4d5a 0%, transparent 70%);
+}
+
+.particle3 {
+  width: 250px;
+  height: 250px;
+  bottom: 15%;
+  left: 20%;
+  animation-duration: 22s;
+  animation-delay: 4s;
+}
+
+.particle4 {
+  width: 180px;
+  height: 180px;
+  top: 30%;
+  right: 25%;
+  animation-duration: 18s;
+  animation-delay: 1s;
+  background: radial-gradient(circle, #ffffff 0%, transparent 70%);
+  opacity: 0.08;
+}
+
+.particle5 {
+  width: 220px;
+  height: 220px;
+  bottom: 30%;
+  right: 10%;
+  animation-duration: 24s;
+  animation-delay: 3s;
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translate(0, 0) scale(1);
+    opacity: 0.12;
+  }
+  25% {
+    transform: translate(50px, -50px) scale(1.1);
+    opacity: 0.18;
+  }
+  50% {
+    transform: translate(-30px, 30px) scale(0.9);
+    opacity: 0.15;
+  }
+  75% {
+    transform: translate(40px, 60px) scale(1.05);
+    opacity: 0.14;
+  }
+}
+
+/* Welcome Text */
+.welcome_text {
+  text-align: center;
+  margin-bottom: 4rem;
+  position: relative;
+  z-index: 10;
+}
+
+.welcome_text h1 {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin: 0;
+  padding: 0;
+}
+
+.text_highlight {
+  display: block;
+  font-size: 7rem;
+  font-weight: 700;
+  background: #e22e36;
+  color: #ffffff;
+  padding: 10px 40px;
+  width: fit-content;
+  margin: 0 auto;
+  border-radius: 8px;
+  box-shadow:
+    0 0 60px rgba(226, 46, 54, 0.7),
+    0 0 100px rgba(226, 46, 54, 0.5),
+    0 10px 40px rgba(0, 0, 0, 0.6),
+    inset 0 2px 20px rgba(255, 255, 255, 0.2);
+  animation: glowRed 3s ease-in-out infinite;
+  line-height: 1.2;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+}
+
+.text_main {
+  display: block;
+  font-size: 7rem;
+  font-weight: 700;
+  color: #fff;
+  text-shadow:
+    0 0 30px rgba(226, 46, 54, 0.8),
+    0 0 60px rgba(226, 46, 54, 0.5),
+    0 5px 25px rgba(0, 0, 0, 0.8);
+  margin-top: 1.5rem;
+  line-height: 1.2;
+  text-transform: uppercase;
+  letter-spacing: 4px;
+}
+
+@keyframes glowRed {
+  0%, 100% {
+    box-shadow:
+      0 0 60px rgba(226, 46, 54, 0.7),
+      0 0 100px rgba(226, 46, 54, 0.5),
+      0 10px 40px rgba(0, 0, 0, 0.6),
+      inset 0 2px 20px rgba(255, 255, 255, 0.2);
+  }
+  50% {
+    box-shadow:
+      0 0 80px rgba(226, 46, 54, 0.9),
+      0 0 120px rgba(226, 46, 54, 0.7),
+      0 10px 50px rgba(0, 0, 0, 0.7),
+      inset 0 2px 30px rgba(255, 255, 255, 0.3);
+  }
+}
+
+.welcome_text p {
+  font-size: 2.2rem;
+  color: rgba(255, 255, 255, 0.95);
+  margin-top: 2.5rem;
+  font-weight: 400;
+  text-shadow: 0 2px 15px rgba(0, 0, 0, 0.8);
+  letter-spacing: 1px;
+}
+
+/* Start Button */
+.start_button {
+  position: relative;
+  background: linear-gradient(135deg, #e22e36 0%, #c51f28 100%);
+  color: #ffffff;
+  border: none;
+  padding: 2rem 5rem;
+  font-size: 3rem;
+  font-weight: 700;
+  border-radius: 8px;
+  cursor: pointer;
+  overflow: hidden;
+  box-shadow:
+    0 10px 40px rgba(226, 46, 54, 0.6),
+    0 0 60px rgba(226, 46, 54, 0.4),
+    0 5px 20px rgba(0, 0, 0, 0.8),
+    inset 0 2px 0 rgba(255, 255, 255, 0.2);
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  z-index: 100;
+}
+
+.start_button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg,
+    transparent,
+    rgba(255, 255, 255, 0.3),
+    transparent);
+  transition: left 0.6s ease;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.start_button:hover::before {
+  left: 100%;
+}
+
+.start_button:hover {
+  transform: translateY(-8px) scale(1.05);
+  box-shadow:
+    0 20px 60px rgba(226, 46, 54, 0.8),
+    0 0 80px rgba(226, 46, 54, 0.6),
+    0 10px 30px rgba(0, 0, 0, 0.9),
+    inset 0 2px 0 rgba(255, 255, 255, 0.3);
+}
+
+.start_button:active {
+  transform: translateY(-4px) scale(1.02);
+  box-shadow:
+    0 10px 30px rgba(226, 46, 54, 0.7),
+    0 0 60px rgba(226, 46, 54, 0.5),
+    0 5px 20px rgba(0, 0, 0, 0.8),
+    inset 0 2px 0 rgba(255, 255, 255, 0.2);
+}
+
+.button_content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5rem;
+  position: relative;
+  z-index: 10;
+}
+
+.button_icon {
+  font-size: 3rem;
+  animation: bounce 2s infinite;
+}
+
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+.button_text {
+  font-weight: 700;
+}
+
+.button_arrow {
+  font-size: 3rem;
+  font-weight: bold;
+  transition: transform 0.3s ease;
+}
+
+.start_button:hover .button_arrow {
+  transform: translateX(10px);
+  animation: arrowPulse 0.6s ease infinite;
+}
+
+@keyframes arrowPulse {
+  0%, 100% { transform: translateX(10px); }
+  50% { transform: translateX(20px); }
+}
+
+/* ============================================ */
+/* RESPONSIVE WELCOME SCREEN */
+/* ============================================ */
+
+/* Large Interactive Screens (1080x1920) */
+@media ((min-width: 1080px) and (min-height: 1920px)) {
+  .text_highlight {
+    font-size: 9rem;
+    padding: 20px 60px;
+    border-radius: 25px;
+  }
+
+  .text_main {
+    font-size: 9rem;
+  }
+
+  .welcome_text p {
+    font-size: 3.5rem;
+    margin-top: 3rem;
+  }
+
+  .start_button {
+    padding: 4rem 8rem;
+    font-size: 5rem;
+  }
+
+  .button_icon {
+    font-size: 5rem;
+  }
+
+  .button_arrow {
+    font-size: 5rem;
+  }
+
+  .particle1 { width: 500px; height: 500px; }
+  .particle2 { width: 400px; height: 400px; }
+  .particle3 { width: 450px; height: 450px; }
+  .particle4 { width: 350px; height: 350px; }
+  .particle5 { width: 420px; height: 420px; }
+}
+
+/* Tablets (Landscape) - 768px to 1024px */
+@media (max-width: 1024px) and (min-width: 769px) {
+  .text_highlight {
+    font-size: 5.5rem;
+    padding: 12px 35px;
+  }
+
+  .text_main {
+    font-size: 5.5rem;
+  }
+
+  .welcome_text p {
+    font-size: 1.8rem;
+  }
+
+  .start_button {
+    padding: 1.8rem 4rem;
+    font-size: 2.5rem;
+  }
+
+  .button_icon, .button_arrow {
+    font-size: 2.5rem;
+  }
+}
+
+/* Tablets (Portrait) - 600px to 768px */
+@media (max-width: 768px) and (min-width: 601px) {
+  .text_highlight {
+    font-size: 4rem;
+    padding: 10px 30px;
+    border-radius: 12px;
+  }
+
+  .text_main {
+    font-size: 4rem;
+  }
+
+  .welcome_text p {
+    font-size: 1.5rem;
+    margin-top: 1.5rem;
+  }
+
+  .start_button {
+    padding: 1.5rem 3.5rem;
+    font-size: 2rem;
+  }
+
+  .button_icon, .button_arrow {
+    font-size: 2rem;
+  }
+
+  .particle1 { width: 200px; height: 200px; }
+  .particle2 { width: 150px; height: 150px; }
+  .particle3 { width: 180px; height: 180px; }
+  .particle4 { width: 140px; height: 140px; }
+  .particle5 { width: 160px; height: 160px; }
+}
+
+/* Phones (Landscape) - 480px to 600px */
+@media (max-width: 600px) and (min-width: 481px) {
+  .text_highlight {
+    font-size: 3rem;
+    padding: 8px 24px;
+  }
+
+  .text_main {
+    font-size: 3rem;
+  }
+
+  .welcome_text p {
+    font-size: 1.2rem;
+    margin-top: 1rem;
+  }
+
+  .start_button {
+    padding: 1.2rem 3rem;
+    font-size: 1.6rem;
+  }
+
+  .button_icon, .button_arrow {
+    font-size: 1.6rem;
+  }
+
+  .button_content {
+    gap: 1rem;
+  }
+}
+
+/* Phones (Portrait) - 360px to 480px */
+@media (max-width: 480px) and (min-width: 361px) {
+  .welcome_text {
+    margin-bottom: 3rem;
+  }
+
+  .text_highlight {
+    font-size: 2.5rem;
+    padding: 6px 20px;
+    border-radius: 10px;
+  }
+
+  .text_main {
+    font-size: 2.5rem;
+  }
+
+  .welcome_text p {
+    font-size: 1rem;
+    padding: 0 1rem;
+  }
+
+  .start_button {
+    padding: 1rem 2.5rem;
+    font-size: 1.4rem;
+    border-radius: 50px;
+  }
+
+  .button_icon, .button_arrow {
+    font-size: 1.4rem;
+  }
+
+  .particle1 { width: 150px; height: 150px; }
+  .particle2 { width: 120px; height: 120px; }
+  .particle3 { width: 130px; height: 130px; }
+  .particle4 { width: 100px; height: 100px; }
+  .particle5 { width: 110px; height: 110px; }
+}
+
+/* Small Phones - 321px to 360px */
+@media (max-width: 360px) and (min-width: 321px) {
+  .text_highlight {
+    font-size: 2rem;
+    padding: 5px 16px;
+  }
+
+  .text_main {
+    font-size: 2rem;
+  }
+
+  .welcome_text p {
+    font-size: 0.9rem;
+    padding: 0 0.5rem;
+  }
+
+  .start_button {
+    padding: 0.9rem 2rem;
+    font-size: 1.2rem;
+  }
+
+  .button_icon, .button_arrow {
+    font-size: 1.2rem;
+  }
+
+  .button_content {
+    gap: 0.8rem;
+  }
+}
+
+/* Extra Small Phones - 320px and below */
+@media (max-width: 320px) {
+  .text_highlight {
+    font-size: 1.8rem;
+    padding: 4px 14px;
+  }
+
+  .text_main {
+    font-size: 1.8rem;
+  }
+
+  .welcome_text p {
+    font-size: 0.85rem;
+  }
+
+  .start_button {
+    padding: 0.8rem 1.8rem;
+    font-size: 1.1rem;
+  }
+
+  .button_icon, .button_arrow {
+    font-size: 1.1rem;
+  }
+}
+
+/* Medium Desktop Screens (1366x768) */
+@media (min-width: 1366px) and (max-width: 1919px) and (max-height: 900px) {
+  .text_highlight {
+    font-size: 3.5rem;
+    padding: 12px 35px;
+  }
+
+  .text_main {
+    font-size: 3.5rem;
+  }
+
+  .welcome_text p {
+    font-size: 1.4rem;
+  }
+
+  .start_button {
+    padding: 1.5rem 4rem;
+    font-size: 1.8rem;
+  }
+
+  .button_icon, .button_arrow {
+    font-size: 1.8rem;
+  }
+}
+
+/* Large Desktop (1920x1080+) */
+@media (min-width: 1920px) and (max-height: 1080px) {
+  .text_highlight {
+    font-size: 4.5rem;
+    padding: 14px 40px;
+  }
+
+  .text_main {
+    font-size: 4.5rem;
+  }
+
+  .welcome_text p {
+    font-size: 1.8rem;
+  }
+
+  .start_button {
+    padding: 1.8rem 4.5rem;
+    font-size: 2.2rem;
+  }
+
+  .button_icon, .button_arrow {
+    font-size: 2.2rem;
+  }
+
+  .particle1 { width: 400px; height: 400px; }
+  .particle2 { width: 300px; height: 300px; }
+  .particle3 { width: 350px; height: 350px; }
+  .particle4 { width: 280px; height: 280px; }
+  .particle5 { width: 320px; height: 320px; }
+}
+
+/* Very Large Desktop (1920+, >1080 height) */
+@media (min-width: 1920px) and (min-height: 1081px) {
+  .text_highlight {
+    font-size: 5rem;
+    padding: 16px 45px;
+  }
+
+  .text_main {
+    font-size: 5rem;
+  }
+
+  .welcome_text p {
+    font-size: 2rem;
+  }
+
+  .start_button {
+    padding: 2rem 5rem;
+    font-size: 2.5rem;
+  }
+
+  .button_icon, .button_arrow {
+    font-size: 2.5rem;
+  }
+}
+
 /* Very Large Desktop Landscape (1920+ width, taller than 1080) */
 @media (min-width: 1920px) and (min-height: 1081px) {
   .login_container {

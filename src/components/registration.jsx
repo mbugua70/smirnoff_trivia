@@ -67,6 +67,7 @@ export const loginAction = async ({ request }) => {
 const LoginPage = () => {
   // code for logging status with useNavigation hook
   const [applyClass, setApplyClass] = useState(false);
+  const [showWelcome, setShowWelcome] = useState(true);
   const navigation = useNavigation();
   const loginMssgError = useLoaderData(); // From protected route redirect
   const actionData = useActionData(); // From form submission
@@ -137,57 +138,84 @@ const LoginPage = () => {
 
   return (
     <>
-      <div className={Styles.login_container}>
+      {showWelcome ? (
+        // Welcome Screen
+        <div className={`${Styles.login_container} ${Styles.welcome_screen}`}>
+          <div className={Styles.welcome_content}>
+            {/* Animated particles/circles in background */}
+            <div className={Styles.particles}>
+              <div className={`${Styles.particle} ${Styles.particle1}`}></div>
+              <div className={`${Styles.particle} ${Styles.particle2}`}></div>
+              <div className={`${Styles.particle} ${Styles.particle3}`}></div>
+              <div className={`${Styles.particle} ${Styles.particle4}`}></div>
+              <div className={`${Styles.particle} ${Styles.particle5}`}></div>
+            </div>
 
-        <div className={Styles.details_whiskey}>
-          <span className='animate__animated  animate__fadeInLeftBig'>
-            Find Your
-          </span>
-          <span className='animate__animated  animate__fadeInRight' style={{color: "#000"}}>
-            Baileys Drink
-          </span>
+            {/* Main welcome text */}
+            <div className={Styles.welcome_text}>
+              <h1 className='animate__animated animate__fadeInDown animate__slow'>
+                <span className={Styles.text_highlight}>Discover Your</span>
+                <span className={Styles.text_main}>Smirnoff Experience</span>
+              </h1>
+              <p className='animate__animated animate__fadeIn animate__delay-1s'>
+                Take the quiz and unlock your perfect Smirnoff moment
+              </p>
+            </div>
+
+            {/* Start button */}
+            <button
+              onClick={() => setShowWelcome(false)}
+              className={`${Styles.start_button} animate__animated animate__bounceIn animate__delay-2s ${
+                applyClass ? "animate__pulse" : ""
+              }`}
+            >
+              <span className={Styles.button_content}>
+                <span className={Styles.button_icon}>🍹</span>
+                <span className={Styles.button_text}>Start the Quiz</span>
+                <span className={Styles.button_arrow}>→</span>
+              </span>
+            </button>
+          </div>
         </div>
-         <Form className={Styles.form} method="post" replace>
-             <div className="row input-field">
-            {/* <label htmlFor="name">Name</label> */}
-            <input type="text" name="name" id="name" placeholder="Name" />
-          </div>
-          <div className="row input-field">
-            {/* <label htmlFor="phone_number">Phone</label> */}
-            <input
-              type="tel"
-              name="phone"
-              id="phone"
-              placeholder="Phone Number"
-            />
-          </div>
-          <div className="row input-field">
-            {/* <label htmlFor="phone_number">Phone</label> */}
-            <input
-              type="email"
-              name="email"
-              id="email"
-              placeholder="Email"
-            />
-          </div>
+      ) : (
+        // Registration Form
+        <div className={`${Styles.login_container} animate__animated animate__fadeIn`}>
+          <Form className={Styles.form} method="post" replace>
+            <div className="row input-field">
+              <input type="text" name="name" id="name" placeholder="Name" />
+            </div>
+            <div className="row input-field">
+              <input
+                type="tel"
+                name="phone"
+                id="phone"
+                placeholder="Phone Number"
+              />
+            </div>
+            <div className="row input-field">
+              <input
+                type="email"
+                name="email"
+                id="email"
+                placeholder="Email"
+              />
+            </div>
 
-        {/* below instead of using the form we wil use Form from the react router */}
-        <div className='row input-field  button-style'>
-          <button
-            type="submit"
-            className={`${Styles.button} animate__animated ${
-              applyClass ? "animate__pulse" : ""
-            }`}
-            disabled={navigation.state === "submitting"}>
-            {navigation.state === "submitting"
-              ? "Registering..."
-              : "Take the quiz"}
-          </button>
+            <div className='row input-field button-style'>
+              <button
+                type="submit"
+                className={`${Styles.button} animate__animated ${
+                  applyClass ? "animate__pulse" : ""
+                }`}
+                disabled={navigation.state === "submitting"}>
+                {navigation.state === "submitting"
+                  ? "Registering..."
+                  : "Take the quiz"}
+              </button>
+            </div>
+          </Form>
         </div>
-         </Form>
-
-
-      </div>
+      )}
       <ToastContainer />
     </>
   );
