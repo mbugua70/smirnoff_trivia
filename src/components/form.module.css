@@ -17,7 +17,7 @@
   display: flex;
   justify-content: center;
   flex-direction: column;
-  background-image: url("/image/interactive-screen.jpg");
+  background-image: url("/image/interactive-screen.png");
   background-repeat: no-repeat;
   background-origin: content-box;
   background-position: left top;
@@ -169,7 +169,7 @@
     display: flex;
     justify-content: center;
     flex-direction: column;
-    background-image: url("/image/interactive-screen.jpg");
+    background-image: url("/image/interactive-screen.png");
     background-repeat: no-repeat;
     background-size: contain;
     background-position: left top;
@@ -243,7 +243,7 @@
 /* Tablets (Portrait) - 600px to 768px */
 @media (max-width: 768px) and (min-width: 601px) {
   .login_container {
-    background-image: url("/image/768.jpg");
+    background-image: url("/image/768.png");
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -300,7 +300,7 @@
 /* Phones (Landscape) - 480px to 600px */
 @media (max-width: 600px) and (min-width: 481px) {
   .login_container {
-    background-image: url("/image/360.jpg");
+    background-image: url("/image/360.png");
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -361,7 +361,7 @@
 /* Phones (Portrait) - 360px to 480px */
 @media (max-width: 480px) and (min-width: 361px) {
   .login_container {
-    background-image: url("/image/360.jpg");
+    background-image: url("/image/360.png");
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -427,7 +427,7 @@
 /* Small Phones - 321px to 360px */
 @media (max-width: 360px) and (min-width: 321px) {
   .login_container {
-    background-image: url("/image/320.jpg");
+    background-image: url("/image/320.png");
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -475,7 +475,7 @@
 /* Extra Small Phones - 320px and below */
 @media (max-width: 320px) {
   .login_container {
-    background-image: url("/image/320.jpg");
+    background-image: url("/image/320.png");
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
