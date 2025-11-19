@@ -2,54 +2,66 @@ import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { updatePlayer } from "./api";
 
-// Smirnoff-inspired recommendation data
+// General recommendation data for all brands
 const recommendationMap = {
   A: {
-    title: "Cosmopolitan",
-    subtitle: "The Sophisticate",
+    title: "The Groove Lover",
+    subtitle: "Music & Vibes",
     lines: [
-      "You know what you want, elegance in a glass.",
+      "You're all about the energy and rhythm of the night.",
     ],
-    cta: "Serve: Chilled in martini glass, citrus zest garnish",
-    icon: "🍸",
+    cta: "Perfect for: Live music venues and cocktail lounges",
+    icon: "🎵",
     decorativeIcon: "✦",
   },
   B: {
-    title: "Berry Bramble",
-    subtitle: "The Playful Spirit",
+    title: "The Indulgent Diner",
+    subtitle: "Fine Dining Experience",
     lines: [
-      "You bring the fun wherever you go.",
+      "You appreciate the finer things in life.",
     ],
-    cta: "Serve: Chilled short glass, fresh berries garnish",
-    icon: "🍹",
+    cta: "Perfect for: Premium dining and culinary adventures",
+    icon: "🍽️",
     decorativeIcon: "♪",
   },
   C: {
-    title: "Long Island Iced Tea",
-    subtitle: "The Wildcard",
+    title: "The Chill Connoisseur",
+    subtitle: "Relaxed & Refined",
     lines: [
-      "You're not afraid to shake things up.",
+      "You know how to enjoy life's simple pleasures.",
     ],
-    cta: "Serve: Chilled highball, mint & lemon garnish",
-    icon: "🍷",
+    cta: "Perfect for: Cozy cafes and artisanal experiences",
+    icon: "☕",
     decorativeIcon: "❋",
+  },
+  D: {
+    title: "The Social Butterfly",
+    subtitle: "Life of the Party",
+    lines: [
+      "You bring people together and create memories.",
+    ],
+    cta: "Perfect for: Social gatherings and celebrations",
+    icon: "🎉",
+    decorativeIcon: "★",
   },
 };
 
-// Smirnoff brand theme - consistent across all results
-const smirnoffTheme = {
-  background: "linear-gradient(135deg, #000000 0%, #1a0a0a 25%, #2d1215 50%, #1a0a0a 75%, #000000 100%)",
+// Multi-brand theme blending Smirnoff (red), Gilbey's (purple), and Captain Morgan (cyan)
+const multiBrandTheme = {
+  background: "linear-gradient(135deg, #0a0a0a 0%, #1a0a14 20%, #0f0a1a 40%, #0a141a 60%, #140a12 80%, #0a0a0a 100%)",
   primaryText: "#ffffff",
   secondaryText: "rgba(255, 255, 255, 0.9)",
-  accentColor: "#e22e36", // Smirnoff red
-  borderColor: "#e22e36",
-  cardBackground: "rgba(226, 46, 54, 0.08)",
-  buttonBg: "linear-gradient(135deg, #e22e36 0%, #c51f28 100%)",
+  accentColor: "#ff4d5a", // Smirnoff red as primary accent
+  accentColor2: "#b370ff", // Gilbey's purple as secondary
+  accentColor3: "#5dd9ff", // Captain Morgan cyan as tertiary
+  borderColor: "linear-gradient(120deg, #e22e36 0%, #8a2be2 50%, #00bfff 100%)",
+  cardBackground: "rgba(255, 77, 90, 0.05)",
+  buttonBg: "linear-gradient(135deg, #e22e36 0%, #8a2be2 50%, #00bfff 100%)",
   buttonText: "#ffffff",
-  iconCircleBorder: "#e22e36",
-  iconCircleGlow: "rgba(226, 46, 54, 0.3)",
-  ornamentColor: "#e22e36",
-  badgeBg: "#e22e36",
+  iconCircleBorder: "#ff4d5a",
+  iconCircleGlow: "rgba(255, 77, 90, 0.3)",
+  ornamentColor: "#ff4d5a",
+  badgeBg: "linear-gradient(135deg, #e22e36 0%, #8a2be2 50%, #00bfff 100%)",
   badgeText: "#ffffff",
 };
 
@@ -92,10 +104,10 @@ const Summary = ({ userAnswers, QUESTIONS, setRec }) => {
   }, []);
 
   // Pick recommendation data
-  const rec = recommendationMap[mostChosen] || {};
+  const rec = recommendationMap[mostChosen] || recommendationMap.A;
 
-  // Use Smirnoff theme for all results
-  const currentTheme = smirnoffTheme;
+  // Use multi-brand theme for all results
+  const currentTheme = multiBrandTheme;
 
   useEffect(() => {
     setRec(rec);
@@ -110,7 +122,7 @@ const Summary = ({ userAnswers, QUESTIONS, setRec }) => {
       className="baileys-summary-wrapper"
       style={{ background: currentTheme.background }}
     >
-      {/* Smirnoff floating particles */}
+      {/* Elegant floating particles */}
       <div className="smirnoff-particles">
         <div className="particle particle-1"></div>
         <div className="particle particle-2"></div>
@@ -120,11 +132,8 @@ const Summary = ({ userAnswers, QUESTIONS, setRec }) => {
       </div>
 
       <div className="baileys-summary-container">
-        {/* Smirnoff Header Section */}
+        {/* Header Section */}
         <div className="baileys-header animate__animated animate__fadeIn">
-          <div className="smirnoff-logo-text" style={{ color: currentTheme.accentColor }}>
-            SMIRNOFF
-          </div>
           <div
             className="icon-circle"
             style={{

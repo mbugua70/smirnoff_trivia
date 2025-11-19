@@ -1,7 +1,7 @@
-const API_BASE_URL =
-  import.meta.env.VITE_API_BASE_URL ||
-  "https://trivia-backend-one.onrender.com";
-// const API_BASE_URL = "http://localhost:4040"
+// const API_BASE_URL =
+//   import.meta.env.VITE_API_BASE_URL ||
+//   "https://trivia-backend-one.onrender.com";
+const API_BASE_URL = "http://localhost:4040";
 
 export async function loginUser(creds) {
   console.log(creds, "creds");

@@ -17,8 +17,8 @@ export const loginLoader = ({ request }) => {
 export const loginAction = async ({ request }) => {
   const formData = await request.formData();
   const name = formData.get("name");
-  const phone = formData.get("phone");
-  const email = formData.get("email");
+  // const phone = formData.get("phone");
+  // const email = formData.get("email");
 
   const pathname =
     new URL(request.url).searchParams.get("redirectTo") || "/trivia";
@@ -28,14 +28,14 @@ export const loginAction = async ({ request }) => {
       return {error: "Name is required"}
     }
 
-    if(phone === ""){
-      return {error: "Phone number is required"}
-    }
+    // if(phone === ""){
+    //   return {error: "Phone number is required"}
+    // }
 
-    if(email === ""){
-      return {error: "Email is required"}
-    }
-    const data = await loginUser({ name, phone, email });
+    // if(email === ""){
+    //   return {error: "Email is required"}
+    // }
+    const data = await loginUser({ name });
     console.log(data, "user data login")
     localStorage.setItem("user", JSON.stringify(data));
     return redirect(pathname);
@@ -43,18 +43,18 @@ export const loginAction = async ({ request }) => {
     // Return error message to be displayed by the component
     if (err && err.message) {
       // Check for specific error types and return appropriate message
-      if (err.message.phone) {
-        return { error: err.message.phone };
-      }
+      // if (err.message.phone) {
+      //   return { error: err.message.phone };
+      // }
       if (err.message.name) {
         return { error: err.message.name };
       }
       if (err.message.validate) {
         return { error: err.message.validate };
       }
-      if (err.message.played) {
-        return { error: err.message.played };
-      }
+      // if (err.message.played) {
+      //   return { error: err.message.played };
+      // }
       console.log(err, "error occurred")
       // Generic error
       return { error: "Something went wrong. Please try again." };
@@ -207,23 +207,6 @@ const LoginPage = () => {
             <div className="row input-field">
               <input type="text" name="name" id="name" placeholder="Name" />
             </div>
-            <div className="row input-field">
-              <input
-                type="tel"
-                name="phone"
-                id="phone"
-                placeholder="Phone Number"
-              />
-            </div>
-            <div className="row input-field">
-              <input
-                type="email"
-                name="email"
-                id="email"
-                placeholder="Email"
-              />
-            </div>
-
             <div className='row input-field button-style'>
               <button
                 type="submit"
