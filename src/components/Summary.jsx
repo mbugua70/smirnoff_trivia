@@ -2,110 +2,55 @@ import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { updatePlayer } from "./api";
 
-// Baileys-inspired recommendation data with luxury aesthetic
+// Smirnoff-inspired recommendation data
 const recommendationMap = {
   A: {
-      title: "Cosmopolitan",
+    title: "Cosmopolitan",
     subtitle: "The Sophisticate",
     lines: [
-      "You know what you want,  elegance in a glass. Serve",
+      "You know what you want, elegance in a glass.",
     ],
-    cta: "Chilled in martini glass, citrus zest garnish",
-    icon: "🍽️",
+    cta: "Serve: Chilled in martini glass, citrus zest garnish",
+    icon: "🍸",
     decorativeIcon: "✦",
   },
   B: {
     title: "Berry Bramble",
     subtitle: "The Playful Spirit",
     lines: [
-      "You bring the fun wherever you go. Serve:",
+      "You bring the fun wherever you go.",
     ],
-    cta: "Chilled short glass, fresh berries garnish",
-    icon: "🎵",
+    cta: "Serve: Chilled short glass, fresh berries garnish",
+    icon: "🍹",
     decorativeIcon: "♪",
   },
   C: {
-    title: " Long Island Iced Tea",
+    title: "Long Island Iced Tea",
     subtitle: "The Wildcard",
     lines: [
-      "You're not afraid to shake things up",
+      "You're not afraid to shake things up.",
     ],
-    cta: "Serve: Chilled highball, mint & lemon garnish.",
-    icon: "☕",
+    cta: "Serve: Chilled highball, mint & lemon garnish",
+    icon: "🍷",
     decorativeIcon: "❋",
   },
-  // D: {
-  //   title: "Your matched Cocktail",
-  //   subtitle: "DON MARGARITA",
-  //   lines: ["Classic, zesty, and always a crowd-pleaser."],
-  //   cta: "👉 Cheers to your DON MARGARITA choice!",
-  //   icon: "🍹",
-  //   decorativeIcon: "✧",
-  // },
 };
 
-// Comprehensive theme mapping for each venue
-const themes = {
-  YAMAS: {
-    background: "linear-gradient(180deg, #E8D5C4 0%, #D4C0B0 50%, #E8D5C4 100%)", // nude gradient
-    primaryText: "#3d2817", // dark brown
-    secondaryText: "#5a4637", // medium brown
-    accentColor: "#8B6F47", // darker gold/brown
-    borderColor: "#8B6F47",
-    cardBackground: "rgba(139, 111, 71, 0.15)",
-    buttonBg: "#8B6F47",
-    buttonText: "#fff",
-    iconCircleBorder: "#8B6F47",
-    iconCircleGlow: "rgba(139, 111, 71, 0.3)",
-    ornamentColor: "#8B6F47",
-    badgeBg: "#8B6F47",
-    badgeText: "#fff",
-  },
-  ONZA: {
-    background: "linear-gradient(180deg, #F5F5DC 0%, #E8E8C8 50%, #F5F5DC 100%)", // beige gradient
-    primaryText: "#2c1810", // very dark brown
-    secondaryText: "#4a3326", // dark brown
-    accentColor: "#8B4513", // saddle brown
-    borderColor: "#8B4513",
-    cardBackground: "rgba(139, 69, 19, 0.12)",
-    buttonBg: "#8B4513",
-    buttonText: "#fff",
-    iconCircleBorder: "#8B4513",
-    iconCircleGlow: "rgba(139, 69, 19, 0.3)",
-    ornamentColor: "#8B4513",
-    badgeBg: "#8B4513",
-    badgeText: "#fff",
-  },
-  RAFAELO: {
-    background: "linear-gradient(180deg, #FFB6C1 0%, #FFA0AB 50%, #FFB6C1 100%)", // pink gradient
-    primaryText: "#5C1F3D", // dark pink/purple
-    secondaryText: "#7D2E54", // medium pink/purple
-    accentColor: "#C9356A", // deep pink
-    borderColor: "#C9356A",
-    cardBackground: "rgba(201, 53, 106, 0.15)",
-    buttonBg: "#C9356A",
-    buttonText: "#fff",
-    iconCircleBorder: "#C9356A",
-    iconCircleGlow: "rgba(201, 53, 106, 0.3)",
-    ornamentColor: "#C9356A",
-    badgeBg: "#C9356A",
-    badgeText: "#fff",
-  },
-  "DON MARGARITA": {
-    background: "linear-gradient(180deg, #0a0a0a 0%, #1a1410 50%, #0a0a0a 100%)", // black gradient (original)
-    primaryText: "#f5f1e8", // cream
-    secondaryText: "rgba(245, 241, 232, 0.9)",
-    accentColor: "#CAAF5C", // gold
-    borderColor: "#CAAF5C",
-    cardBackground: "rgba(245, 241, 232, 0.08)",
-    buttonBg: "#CAAF5C",
-    buttonText: "#0a0a0a",
-    iconCircleBorder: "#CAAF5C",
-    iconCircleGlow: "rgba(202, 175, 92, 0.3)",
-    ornamentColor: "#CAAF5C",
-    badgeBg: "#CAAF5C",
-    badgeText: "#0a0a0a",
-  },
+// Smirnoff brand theme - consistent across all results
+const smirnoffTheme = {
+  background: "linear-gradient(135deg, #000000 0%, #1a0a0a 25%, #2d1215 50%, #1a0a0a 75%, #000000 100%)",
+  primaryText: "#ffffff",
+  secondaryText: "rgba(255, 255, 255, 0.9)",
+  accentColor: "#e22e36", // Smirnoff red
+  borderColor: "#e22e36",
+  cardBackground: "rgba(226, 46, 54, 0.08)",
+  buttonBg: "linear-gradient(135deg, #e22e36 0%, #c51f28 100%)",
+  buttonText: "#ffffff",
+  iconCircleBorder: "#e22e36",
+  iconCircleGlow: "rgba(226, 46, 54, 0.3)",
+  ornamentColor: "#e22e36",
+  badgeBg: "#e22e36",
+  badgeText: "#ffffff",
 };
 
 const Summary = ({ userAnswers, QUESTIONS, setRec }) => {
@@ -149,8 +94,8 @@ const Summary = ({ userAnswers, QUESTIONS, setRec }) => {
   // Pick recommendation data
   const rec = recommendationMap[mostChosen] || {};
 
-  // Get current theme based on recommendation
-  const currentTheme = themes[rec.subtitle] || themes["DON MARGARITA"];
+  // Use Smirnoff theme for all results
+  const currentTheme = smirnoffTheme;
 
   useEffect(() => {
     setRec(rec);
@@ -165,42 +110,27 @@ const Summary = ({ userAnswers, QUESTIONS, setRec }) => {
       className="baileys-summary-wrapper"
       style={{ background: currentTheme.background }}
     >
-      {/* Decorative floating elements */}
-      <div className="decorative-floaters">
-        <div className="floater floater-1" style={{ color: currentTheme.ornamentColor }}>
-          {rec.decorativeIcon}
-        </div>
-        <div className="floater floater-2" style={{ color: currentTheme.ornamentColor }}>
-          {rec.decorativeIcon}
-        </div>
-        <div className="floater floater-3" style={{ color: currentTheme.ornamentColor }}>
-          {rec.decorativeIcon}
-        </div>
-        <div className="floater floater-4" style={{ color: currentTheme.ornamentColor }}>
-          {rec.decorativeIcon}
-        </div>
-        <div className="floater floater-5" style={{ color: currentTheme.ornamentColor }}>
-          {rec.decorativeIcon}
-        </div>
+      {/* Smirnoff floating particles */}
+      <div className="smirnoff-particles">
+        <div className="particle particle-1"></div>
+        <div className="particle particle-2"></div>
+        <div className="particle particle-3"></div>
+        <div className="particle particle-4"></div>
+        <div className="particle particle-5"></div>
       </div>
 
-      {/* Luxury swirl pattern overlay */}
-      <div className="luxury-pattern" style={{
-        backgroundImage: `repeating-linear-gradient(45deg, transparent, transparent 35px, ${currentTheme.accentColor} 35px, ${currentTheme.accentColor} 36px), repeating-linear-gradient(-45deg, transparent, transparent 35px, ${currentTheme.accentColor} 35px, ${currentTheme.accentColor} 36px)`
-      }}></div>
-
       <div className="baileys-summary-container">
-        {/* Elegant Header Section */}
+        {/* Smirnoff Header Section */}
         <div className="baileys-header animate__animated animate__fadeIn">
-          <div className="header-ornament top-ornament" style={{ color: currentTheme.ornamentColor }}>
-            ✦ ✦ ✦
+          <div className="smirnoff-logo-text" style={{ color: currentTheme.accentColor }}>
+            SMIRNOFF
           </div>
           <div
             className="icon-circle"
             style={{
               borderColor: currentTheme.iconCircleBorder,
               background: `linear-gradient(135deg, ${currentTheme.accentColor}1A 0%, ${currentTheme.accentColor}0D 100%)`,
-              boxShadow: `0 0 30px ${currentTheme.iconCircleGlow}, inset 0 0 30px ${currentTheme.iconCircleGlow}`,
+              boxShadow: `0 0 40px ${currentTheme.iconCircleGlow}, 0 0 80px ${currentTheme.iconCircleGlow}, inset 0 0 30px ${currentTheme.iconCircleGlow}`,
             }}
           >
             <span className="main-icon">{rec.icon}</span>
@@ -209,7 +139,7 @@ const Summary = ({ userAnswers, QUESTIONS, setRec }) => {
             Your Perfect Match
           </h1>
           <div className="header-ornament bottom-ornament" style={{ color: currentTheme.ornamentColor }}>
-            ✦
+            ✦ ✦ ✦
           </div>
         </div>
 
@@ -348,7 +278,7 @@ const Summary = ({ userAnswers, QUESTIONS, setRec }) => {
           </div>
         </div>
 
-        {/* Elegant Restart Button */}
+        {/* Smirnoff Restart Button */}
         <button
           onClick={handleRestart}
           className={`baileys-restart-btn animate__animated ${
@@ -357,10 +287,10 @@ const Summary = ({ userAnswers, QUESTIONS, setRec }) => {
           style={{
             background: currentTheme.buttonBg,
             color: currentTheme.buttonText,
-            boxShadow: `0 5px 20px ${currentTheme.iconCircleGlow}, inset 0 -2px 10px rgba(0, 0, 0, 0.2)`,
+            boxShadow: `0 10px 40px ${currentTheme.iconCircleGlow}, 0 0 60px ${currentTheme.iconCircleGlow}, inset 0 2px 0 rgba(255, 255, 255, 0.2)`,
           }}
         >
-          <span className="btn-text">Start New Journey</span>
+          <span className="btn-text">Take Quiz Again</span>
           <span className="btn-arrow">→</span>
         </button>
       </div>
