@@ -5,44 +5,31 @@ import { updatePlayer } from "./api";
 // General recommendation data for all brands
 const recommendationMap = {
   A: {
-    title: "The Groove Lover",
-    subtitle: "Music & Vibes",
-    lines: [
-      "You're all about the energy and rhythm of the night.",
-    ],
-    cta: "Perfect for: Live music venues and cocktail lounges",
-    icon: "🎵",
+    title: "Cosmopolitan",
+    subtitle: "The Sophisticate",
+    lines: ["You know what you want,  elegance in a glass"],
+    cta: " Serve: Chilled in martini glass, citrus zest garnish",
+    icon: "🍸",
     decorativeIcon: "✦",
+    header: "SMIRNOFF",
   },
   B: {
-    title: "The Indulgent Diner",
-    subtitle: "Fine Dining Experience",
-    lines: [
-      "You appreciate the finer things in life.",
-    ],
-    cta: "Perfect for: Premium dining and culinary adventures",
-    icon: "🍽️",
+    title: "Berry Bramble",
+    subtitle: "The Playful Spirit",
+    lines: ["You bring the fun wherever you go"],
+    cta: "Serve: Chilled short glass, fresh berries garnish",
+    icon: "🍹",
     decorativeIcon: "♪",
+    header: "GILBEY'S",
   },
   C: {
-    title: "The Chill Connoisseur",
-    subtitle: "Relaxed & Refined",
-    lines: [
-      "You know how to enjoy life's simple pleasures.",
-    ],
-    cta: "Perfect for: Cozy cafes and artisanal experiences",
-    icon: "☕",
+    title: "Long Island Iced Tea:",
+    subtitle: "The Wildcard",
+    lines: ["You're not afraid to shake things up"],
+    cta: "Serve: Chilled highball, mint & lemon garnish",
+    icon: "🥃",
     decorativeIcon: "❋",
-  },
-  D: {
-    title: "The Social Butterfly",
-    subtitle: "Life of the Party",
-    lines: [
-      "You bring people together and create memories.",
-    ],
-    cta: "Perfect for: Social gatherings and celebrations",
-    icon: "🎉",
-    decorativeIcon: "★",
+    header: "CAPTAIN MORGAN",
   },
 };
 
@@ -88,14 +75,24 @@ const Summary = ({ userAnswers, QUESTIONS, setRec }) => {
     choiceCount[a] > choiceCount[b] ? a : b
   );
 
+  // If D is the most chosen, pick from A, B, or C instead
+  let finalChoice = mostChosen;
+  if (mostChosen === 'D') {
+    // Find the highest count among A, B, C
+    const abcChoices = { A: choiceCount.A, B: choiceCount.B, C: choiceCount.C };
+    finalChoice = Object.keys(abcChoices).reduce((a, b) =>
+      abcChoices[a] > abcChoices[b] ? a : b
+    );
+  }
+
   // Send update once per category change
   useEffect(() => {
     async function updateFun() {
-      const res = await updatePlayer({ score: mostChosen });
+      const res = await updatePlayer({ score: finalChoice });
       setUpdateScore(res);
     }
     updateFun();
-  }, [mostChosen]);
+  }, [finalChoice]);
 
   // Heartbeat animation toggle
   useEffect(() => {
@@ -104,7 +101,7 @@ const Summary = ({ userAnswers, QUESTIONS, setRec }) => {
   }, []);
 
   // Pick recommendation data
-  const rec = recommendationMap[mostChosen] || recommendationMap.A;
+  const rec = recommendationMap[finalChoice] || recommendationMap.A;
 
   // Use multi-brand theme for all results
   const currentTheme = multiBrandTheme;
@@ -134,6 +131,22 @@ const Summary = ({ userAnswers, QUESTIONS, setRec }) => {
       <div className="baileys-summary-container">
         {/* Header Section */}
         <div className="baileys-header animate__animated animate__fadeIn">
+          {/* Brand Header */}
+          <h2
+            className="brand-header"
+            style={{
+              color: currentTheme.accentColor,
+              fontSize: '2.5rem',
+              fontWeight: '900',
+              letterSpacing: '0.2em',
+              marginBottom: '1.5rem',
+              textTransform: 'uppercase',
+              textShadow: `0 0 30px ${currentTheme.iconCircleGlow}, 0 0 60px ${currentTheme.iconCircleGlow}`,
+            }}
+          >
+            {rec.header}
+          </h2>
+
           <div
             className="icon-circle"
             style={{
@@ -185,7 +198,7 @@ const Summary = ({ userAnswers, QUESTIONS, setRec }) => {
               }}
             >
               <span className="badge-text">Match</span>
-              <span className="badge-category">{mostChosen}</span>
+              <span className="badge-category">{finalChoice}</span>
             </div>
 
             {/* Title Section */}
@@ -260,7 +273,7 @@ const Summary = ({ userAnswers, QUESTIONS, setRec }) => {
                     textShadow: `0 0 20px ${currentTheme.iconCircleGlow}`,
                   }}
                 >
-                  {mostChosen}
+                  {finalChoice}
                 </span>
                 <span className="stat-text" style={{ color: currentTheme.secondaryText }}>
                   Your Match
