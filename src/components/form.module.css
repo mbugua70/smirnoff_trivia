@@ -1586,6 +1586,119 @@
   letter-spacing: 1px;
 }
 
+/* Brand Showcase */
+.brands_showcase {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+  margin-top: 3rem;
+  flex-wrap: wrap;
+}
+
+.brand_item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 1.5rem 2rem;
+  border-radius: 12px;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.brand_item::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.6s ease;
+}
+
+.brand_item:hover::before {
+  left: 100%;
+}
+
+.brand_item:hover {
+  transform: translateY(-5px);
+}
+
+.brand_name {
+  font-size: 2rem;
+  font-weight: 700;
+  letter-spacing: 0.2rem;
+  text-transform: uppercase;
+}
+
+.brand_subtitle {
+  font-size: 1.2rem;
+  font-weight: 400;
+  opacity: 0.9;
+  font-style: italic;
+}
+
+.brand_smirnoff {
+  background: rgba(226, 46, 54, 0.15);
+  border: 2px solid #e22e36;
+  box-shadow:
+    0 0 30px rgba(226, 46, 54, 0.4),
+    inset 0 0 20px rgba(226, 46, 54, 0.1);
+}
+
+.brand_smirnoff .brand_name {
+  color: #ff4d5a;
+  text-shadow: 0 0 20px rgba(226, 46, 54, 0.8);
+}
+
+.brand_smirnoff .brand_subtitle {
+  color: rgba(255, 255, 255, 0.95);
+}
+
+.brand_gilbeys {
+  background: rgba(138, 43, 226, 0.15);
+  border: 2px solid #8a2be2;
+  box-shadow:
+    0 0 30px rgba(138, 43, 226, 0.4),
+    inset 0 0 20px rgba(138, 43, 226, 0.1);
+}
+
+.brand_gilbeys .brand_name {
+  color: #b370ff;
+  text-shadow: 0 0 20px rgba(138, 43, 226, 0.8);
+}
+
+.brand_gilbeys .brand_subtitle {
+  color: rgba(255, 255, 255, 0.95);
+}
+
+.brand_captain {
+  background: rgba(0, 191, 255, 0.15);
+  border: 2px solid #00bfff;
+  box-shadow:
+    0 0 30px rgba(0, 191, 255, 0.4),
+    inset 0 0 20px rgba(0, 191, 255, 0.1);
+}
+
+.brand_captain .brand_name {
+  color: #5dd9ff;
+  text-shadow: 0 0 20px rgba(0, 191, 255, 0.8);
+}
+
+.brand_captain .brand_subtitle {
+  color: rgba(255, 255, 255, 0.95);
+}
+
+.brand_divider {
+  font-size: 2.5rem;
+  color: rgba(255, 255, 255, 0.4);
+  font-weight: 300;
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+}
+
 /* Start Button */
 .start_button {
   position: relative;
@@ -1748,6 +1861,31 @@
     letter-spacing: 2px;
   }
 
+  /* Brand Showcase - Ultra High Resolution */
+  .brands_showcase {
+    gap: 4rem;
+    margin-top: 6rem;
+  }
+
+  .brand_item {
+    padding: 3rem 4rem;
+    border-radius: 24px;
+    border-width: 4px;
+  }
+
+  .brand_name {
+    font-size: 4rem;
+    letter-spacing: 0.4rem;
+  }
+
+  .brand_subtitle {
+    font-size: 2.4rem;
+  }
+
+  .brand_divider {
+    font-size: 5rem;
+  }
+
   .start_button {
     padding: 8rem 16rem;
     font-size: 10rem;
@@ -1788,6 +1926,28 @@
     font-size: 1.8rem;
   }
 
+  .brands_showcase {
+    gap: 1.5rem;
+    margin-top: 2.5rem;
+  }
+
+  .brand_item {
+    padding: 1.2rem 1.8rem;
+  }
+
+  .brand_name {
+    font-size: 1.6rem;
+    letter-spacing: 0.15rem;
+  }
+
+  .brand_subtitle {
+    font-size: 1rem;
+  }
+
+  .brand_divider {
+    font-size: 2rem;
+  }
+
   .start_button {
     padding: 1.8rem 4rem;
     font-size: 2.5rem;
@@ -1813,6 +1973,31 @@
   .welcome_text p {
     font-size: 1.5rem;
     margin-top: 1.5rem;
+  }
+
+  .brands_showcase {
+    gap: 1.2rem;
+    margin-top: 2rem;
+    flex-direction: column;
+  }
+
+  .brand_item {
+    padding: 1rem 1.5rem;
+    width: 90%;
+  }
+
+  .brand_name {
+    font-size: 1.4rem;
+    letter-spacing: 0.12rem;
+  }
+
+  .brand_subtitle {
+    font-size: 0.9rem;
+  }
+
+  .brand_divider {
+    font-size: 1.8rem;
+    display: none;
   }
 
   .start_button {
@@ -1845,6 +2030,30 @@
   .welcome_text p {
     font-size: 1.2rem;
     margin-top: 1rem;
+  }
+
+  .brands_showcase {
+    gap: 1rem;
+    margin-top: 1.5rem;
+    flex-direction: column;
+  }
+
+  .brand_item {
+    padding: 0.8rem 1.2rem;
+    width: 95%;
+  }
+
+  .brand_name {
+    font-size: 1.1rem;
+    letter-spacing: 0.1rem;
+  }
+
+  .brand_subtitle {
+    font-size: 0.75rem;
+  }
+
+  .brand_divider {
+    display: none;
   }
 
   .start_button {
@@ -1882,6 +2091,31 @@
     padding: 0 1rem;
   }
 
+  .brands_showcase {
+    gap: 0.8rem;
+    margin-top: 1.2rem;
+    flex-direction: column;
+  }
+
+  .brand_item {
+    padding: 0.7rem 1rem;
+    width: 100%;
+    border-width: 1px;
+  }
+
+  .brand_name {
+    font-size: 0.95rem;
+    letter-spacing: 0.08rem;
+  }
+
+  .brand_subtitle {
+    font-size: 0.65rem;
+  }
+
+  .brand_divider {
+    display: none;
+  }
+
   .start_button {
     padding: 1rem 2.5rem;
     font-size: 1.4rem;
@@ -1915,6 +2149,24 @@
     padding: 0 0.5rem;
   }
 
+  .brands_showcase {
+    gap: 0.6rem;
+    margin-top: 1rem;
+  }
+
+  .brand_item {
+    padding: 0.6rem 0.8rem;
+  }
+
+  .brand_name {
+    font-size: 0.85rem;
+    letter-spacing: 0.06rem;
+  }
+
+  .brand_subtitle {
+    font-size: 0.6rem;
+  }
+
   .start_button {
     padding: 0.9rem 2rem;
     font-size: 1.2rem;
@@ -1944,6 +2196,24 @@
     font-size: 0.85rem;
   }
 
+  .brands_showcase {
+    gap: 0.5rem;
+    margin-top: 0.8rem;
+  }
+
+  .brand_item {
+    padding: 0.5rem 0.7rem;
+  }
+
+  .brand_name {
+    font-size: 0.75rem;
+    letter-spacing: 0.05rem;
+  }
+
+  .brand_subtitle {
+    font-size: 0.55rem;
+  }
+
   .start_button {
     padding: 0.8rem 1.8rem;
     font-size: 1.1rem;
@@ -1969,6 +2239,28 @@
     font-size: 1.4rem;
   }
 
+  .brands_showcase {
+    gap: 1.8rem;
+    margin-top: 2.8rem;
+  }
+
+  .brand_item {
+    padding: 1.3rem 2rem;
+  }
+
+  .brand_name {
+    font-size: 1.7rem;
+    letter-spacing: 0.17rem;
+  }
+
+  .brand_subtitle {
+    font-size: 1.05rem;
+  }
+
+  .brand_divider {
+    font-size: 2.2rem;
+  }
+
   .start_button {
     padding: 1.5rem 4rem;
     font-size: 1.8rem;
@@ -1992,6 +2284,29 @@
 
   .welcome_text p {
     font-size: 1.8rem;
+  }
+
+  .brands_showcase {
+    gap: 2.5rem;
+    margin-top: 3.5rem;
+  }
+
+  .brand_item {
+    padding: 1.8rem 2.5rem;
+    border-radius: 16px;
+  }
+
+  .brand_name {
+    font-size: 2.2rem;
+    letter-spacing: 0.22rem;
+  }
+
+  .brand_subtitle {
+    font-size: 1.3rem;
+  }
+
+  .brand_divider {
+    font-size: 3rem;
   }
 
   .start_button {
@@ -2023,6 +2338,29 @@
 
   .welcome_text p {
     font-size: 2rem;
+  }
+
+  .brands_showcase {
+    gap: 3rem;
+    margin-top: 4rem;
+  }
+
+  .brand_item {
+    padding: 2rem 3rem;
+    border-radius: 18px;
+  }
+
+  .brand_name {
+    font-size: 2.5rem;
+    letter-spacing: 0.25rem;
+  }
+
+  .brand_subtitle {
+    font-size: 1.5rem;
+  }
+
+  .brand_divider {
+    font-size: 3.5rem;
   }
 
   .start_button {

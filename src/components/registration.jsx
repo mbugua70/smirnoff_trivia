@@ -155,10 +155,33 @@ const LoginPage = () => {
             <div className={Styles.welcome_text}>
               <h1 className='animate__animated animate__fadeInDown animate__slow'>
                 <span className={Styles.text_highlight}>Discover Your</span>
-                <span className={Styles.text_main}>Smirnoff Experience</span>
+                <span className={Styles.text_main}>Perfect Mix</span>
               </h1>
-              <p className='animate__animated animate__fadeIn animate__delay-1s'>
-                Take the quiz and unlock your perfect Smirnoff moment
+
+              {/* Brand showcase */}
+              <div className={Styles.brands_showcase}>
+                <div className={`${Styles.brand_item} ${Styles.brand_smirnoff} animate__animated animate__fadeInLeft animate__delay-1s`}>
+                  <span className={Styles.brand_name}>SMIRNOFF</span>
+                  <span className={Styles.brand_subtitle}>Cosmopolitan</span>
+                </div>
+
+                <div className={`${Styles.brand_divider} animate__animated animate__fadeIn animate__delay-1s`}>×</div>
+
+                <div className={`${Styles.brand_item} ${Styles.brand_gilbeys} animate__animated animate__fadeInUp animate__delay-1s`}>
+                  <span className={Styles.brand_name}>GILBEY'S</span>
+                  <span className={Styles.brand_subtitle}>Berry Bramble</span>
+                </div>
+
+                <div className={`${Styles.brand_divider} animate__animated animate__fadeIn animate__delay-1s`}>×</div>
+
+                <div className={`${Styles.brand_item} ${Styles.brand_captain} animate__animated animate__fadeInRight animate__delay-1s`}>
+                  <span className={Styles.brand_name}>CAPTAIN MORGAN</span>
+                  <span className={Styles.brand_subtitle}>Long Island Iced Tea</span>
+                </div>
+              </div>
+
+              <p className='animate__animated animate__fadeIn animate__delay-2s'>
+                Take the quiz and discover your signature cocktail
               </p>
             </div>
 
